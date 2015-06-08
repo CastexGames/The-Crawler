@@ -1,5 +1,6 @@
 package engine.model.map;
 
+import com.sun.javafx.geom.Rectangle;
 import engine.model.elementary.GameEntityList;
 import engine.model.elementary.Vector2D;
 import engine.model.elementary.interfaces.Drawable;
@@ -78,5 +79,11 @@ public class Chunk implements Drawable, Localisable, Updatable, Sized
     public double getHeight()
     {
         return size.y;
+    }
+
+    @Override
+    public Vector2D getSize()
+    {
+        return size;
     }
 }

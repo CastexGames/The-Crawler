@@ -5,6 +5,8 @@
  */
 package engine.model.elementary.interfaces;
 
+import engine.model.elementary.Vector2D;
+
 /**
  *
  * @author Adrien
@@ -13,4 +15,5 @@ public interface Sized
 {
     public double getWidth();
     public double getHeight();
+    public Vector2D getSize();
 }
