@@ -20,7 +20,11 @@ public class GameContext extends Observable implements Updatable
     public GameContext()
     {
         entities = new GameEntityList();
+        this.id = sid++;
     }
+    
+    public static int sid = 1;
+    public final int id;
     
     private static GameContext gameContext = null;
     public static GameContext getCurrentGameContext()
@@ -32,7 +36,7 @@ public class GameContext extends Observable implements Updatable
         GameContext.gameContext = gameContext;
     }
     
-    protected GameEntityList entities;
+    protected final GameEntityList entities;
 
     @Override
     public void update()

@@ -45,4 +45,16 @@ public class WindowSettings extends engine.settings.WindowSettings
     {
         return 60;
     }
+    
+    @Override
+    public boolean isFullScreen()
+    {
+        return true;
+    }
+
+    @Override
+    public String[] getIcon()
+    {
+        return null;
+    }
 }

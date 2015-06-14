@@ -22,9 +22,7 @@ public class GameRuntime extends Runtime
 
     @Override
     protected void initialize()
-    {
-        GameContext.setCurrentGameContext(new GameContext());
-    }
+    { }
 
     @Override
     protected void loop()

@@ -1,34 +1,50 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package engine.controller;
 
 import java.awt.Graphics2D;
 import javax.swing.JPanel;
 import engine.model.GameContext;
 import engine.settings.WindowSettings;
+import java.awt.Graphics;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  *
  * @author Adrien
  */
-public class GamePanel extends JPanel
+public class GamePanel extends JPanel implements Observer
 {
     public GamePanel()
     {
         super();
         
-        this.setPreferredSize(WindowSettings.getWindowSettings().getWindowSize());
         this.setFocusable(true);
         this.requestFocus();
+        
+        updateSettings();
+    }
+
+    @Override
+    public void paint(Graphics graphics)
+    {
+        super.paint(graphics);
+        
+        GameContext.getCurrentGameContext().draw(graphics);
     }
 
     public void draw()
     {
-        Graphics2D graphics = (Graphics2D)getGraphics();
-        
-        GameContext.getCurrentGameContext().draw(graphics);
+        this.repaint();
+    }
+    
+    protected void updateSettings()
+    {
+        this.setPreferredSize(WindowSettings.getWindowSettings().getWindowSize());
+    }
+
+    @Override
+    public void update(Observable o, Object o1)
+    {
+        updateSettings();
     }
 }
