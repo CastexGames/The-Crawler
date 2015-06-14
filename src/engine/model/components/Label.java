@@ -4,7 +4,6 @@ import engine.model.elementary.Vector2D;
 import engine.model.image.Picture;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
 
@@ -88,5 +87,24 @@ public class Label<T extends Object> extends Component
         }
         
         graphics.drawString(this.value.toString(), (int)location.x, (int)location.y);
+    }
+
+    @Override
+    public double getWidth()
+    {
+        return getSize().x;
+    }
+
+    @Override
+    public double getHeight()
+    {
+        return getSize().y;
+    }
+
+    @Override
+    public Vector2D getSize()
+    {
+        Rectangle2D textBound = this.font.getStringBounds(this.value.toString(), null);
+        return new Vector2D(textBound.getX(), textBound.getY());
     }
 }

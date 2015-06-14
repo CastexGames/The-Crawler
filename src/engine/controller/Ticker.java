@@ -1,5 +1,6 @@
 package engine.controller;
 
+import engine.model.elementary.UpdateContext;
 import engine.model.elementary.interfaces.Updatable;
 
 /**
@@ -55,7 +56,7 @@ public class Ticker implements Updatable, IRunnable
     }
 
     @Override
-    public void update()
+    public void update(UpdateContext context)
     {
         if(running)
         {

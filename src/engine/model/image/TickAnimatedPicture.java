@@ -2,6 +2,7 @@ package engine.model.image;
 
 import engine.controller.IRunnable;
 import engine.controller.Ticker;
+import engine.model.elementary.UpdateContext;
 import engine.model.elementary.Vector2D;
 import engine.model.elementary.interfaces.Drawable;
 import engine.model.elementary.interfaces.GameEntity;
@@ -57,9 +58,9 @@ public class TickAnimatedPicture<T extends AnimatedPicture> implements Updatable
     }
 
     @Override
-    public void update()
+    public void update(UpdateContext context)
     {
-        ticker.update();
+        ticker.update(context);
     }
 
     @Override

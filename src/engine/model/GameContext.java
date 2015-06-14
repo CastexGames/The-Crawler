@@ -6,6 +6,7 @@
 package engine.model;
 
 import engine.model.elementary.GameEntityList;
+import engine.model.elementary.UpdateContext;
 import engine.model.elementary.Vector2D;
 import engine.model.elementary.interfaces.Updatable;
 import java.awt.Graphics;
@@ -39,9 +40,9 @@ public class GameContext extends Observable implements Updatable
     protected final GameEntityList entities;
 
     @Override
-    public void update()
+    public void update(UpdateContext context)
     {
-        entities.update();
+        entities.update(context);
     }
 
     public void draw(Graphics graphics)

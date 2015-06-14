@@ -5,11 +5,13 @@
  */
 package engine.model.elementary.interfaces;
 
+import engine.model.elementary.UpdateContext;
+
 /**
  *
  * @author Adrien
  */
 public interface Updatable extends GameEntity
 {
-    public void update();
+    public void update(UpdateContext context);
 }

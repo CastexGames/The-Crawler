@@ -2,6 +2,7 @@ package engine.model.map;
 
 import com.sun.javafx.geom.Rectangle;
 import engine.model.elementary.GameEntityList;
+import engine.model.elementary.UpdateContext;
 import engine.model.elementary.Vector2D;
 import engine.model.elementary.interfaces.Drawable;
 import engine.model.elementary.interfaces.Localisable;
@@ -31,9 +32,9 @@ public class Chunk implements Drawable, Localisable, Updatable, Sized
 
 
     @Override
-    public void update()
+    public void update(UpdateContext context)
     {
-        entityList.update();
+        entityList.update(context);
     }
     
     @Override

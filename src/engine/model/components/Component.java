@@ -1,10 +1,16 @@
 package engine.model.components;
 
+import engine.model.FocusManager;
 import engine.model.elementary.GameEntityList;
+import engine.model.elementary.Key;
+import engine.model.elementary.Rectangle;
+import engine.model.elementary.UpdateContext;
 import engine.model.elementary.Vector2D;
 import engine.model.elementary.interfaces.Drawable;
 import engine.model.elementary.interfaces.GameEntity;
+import engine.model.elementary.interfaces.KeyListener;
 import engine.model.elementary.interfaces.Localisable;
+import engine.model.elementary.interfaces.Sized;
 import engine.model.elementary.interfaces.Updatable;
 import java.awt.Graphics;
 import java.util.Arrays;
@@ -14,7 +20,7 @@ import java.util.Collection;
  *
  * @author Adrien
  */
-public abstract class Component implements GameEntity, Drawable, Localisable, Updatable
+public abstract class Component implements GameEntity, Drawable, Localisable, Updatable, Sized, KeyListener
 {
     public Component(Component parent)
     {
@@ -22,6 +28,8 @@ public abstract class Component implements GameEntity, Drawable, Localisable, Up
         this.visible = true;
         this.location = Vector2D.ZERO;
         this.children = new GameEntityList();
+        this.focused = false;
+        this.canFocus = false;
     }
     public Component()
     {
@@ -70,9 +78,51 @@ public abstract class Component implements GameEntity, Drawable, Localisable, Up
     }
 
     @Override
-    public void update()
+    public void update(UpdateContext context)
     {
-        children.update();
+        if(context.isClicked())
+            if(getBound().intersectWith(context.getClickLocation()))
+            {
+                if(canFocus())
+                {
+                    focused = true;
+                    FocusManager.getFocusManager().setFocused(this);
+                }
+                onClick(context);
+                context.clickHandled();
+            }
+        
+        children.update(context);
+    }
+    
+    protected void onClick(UpdateContext context)
+    { }
+    
+    @Override
+    public void keyPressed(Key key)
+    { }
+    
+    
+    private boolean focused;
+    public boolean isFocused()
+    {
+        return focused;
+    }
+    
+    private boolean canFocus;
+    public boolean canFocus()
+    {
+        return canFocus;
+    }
+    public void setCanFocus(boolean canFocus)
+    {
+        this.canFocus = canFocus;
+    }
+    
+    
+    public Rectangle getBound()
+    {
+        return new Rectangle(this.location, this.getSize());
     }
     
     

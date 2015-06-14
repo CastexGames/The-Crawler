@@ -6,6 +6,7 @@
 package engine.controller;
 
 import engine.model.GameContext;
+import engine.model.elementary.UpdateContext;
 
 /**
  *
@@ -27,7 +28,7 @@ public class GameRuntime extends Runtime
     @Override
     protected void loop()
     {
-        GameContext.getCurrentGameContext().update();
+        GameContext.getCurrentGameContext().update(new UpdateContext());
         
         gamePanel.draw();
     }

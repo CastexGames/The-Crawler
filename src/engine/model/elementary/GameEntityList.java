@@ -157,10 +157,10 @@ public class GameEntityList extends Observable implements Collection<GameEntity>
     
 
     @Override
-    public void update()
+    public void update(UpdateContext context)
     {
         updatables.stream()
-                .forEach(u -> u.update());
+                .forEach(u -> u.update(context));
     }
 
     @Override
