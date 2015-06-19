@@ -25,7 +25,6 @@ public abstract class Runtime implements Runnable
     public void run()
     {
         running = true;
-        
         try
         {
             initialize();
@@ -37,7 +36,8 @@ public abstract class Runtime implements Runnable
                 loop();
                 
                 long value = WindowSettings.getWindowSettings().getFPSTime() - (System.currentTimeMillis() - startTime);
-                Thread.sleep(value);
+                if(value > 0)
+                    Thread.sleep(value);
             }
         }
         catch (InterruptedException ex)

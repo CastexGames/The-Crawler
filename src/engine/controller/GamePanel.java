@@ -3,6 +3,7 @@ package engine.controller;
 import java.awt.Graphics2D;
 import javax.swing.JPanel;
 import engine.model.GameContext;
+import engine.settings.KeyMap;
 import engine.settings.WindowSettings;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
@@ -26,6 +27,9 @@ public class GamePanel extends JPanel implements Observer, KeyListener, MouseInp
         this.requestFocus();
         
         updateSettings();
+        
+        this.addKeyListener(this);
+        this.addMouseListener(this);
     }
 
     @Override
@@ -55,60 +59,54 @@ public class GamePanel extends JPanel implements Observer, KeyListener, MouseInp
     @Override
     public void keyTyped(KeyEvent ke)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void keyPressed(KeyEvent ke)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String action = KeyMap.getKeyMap().getActionFromKey(String.valueOf(ke.getKeyChar()));
+        
+        if(action != null)
+            KeyMap.getKeyMap().getActionManager().getAction(action).invoke();
     }
 
     @Override
     public void keyReleased(KeyEvent ke)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void mouseClicked(MouseEvent me)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void mousePressed(MouseEvent me)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void mouseReleased(MouseEvent me)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void mouseEntered(MouseEvent me)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void mouseExited(MouseEvent me)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void mouseDragged(MouseEvent me)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void mouseMoved(MouseEvent me)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

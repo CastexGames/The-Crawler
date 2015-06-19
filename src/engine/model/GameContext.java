@@ -16,16 +16,20 @@ import engine.model.tools.Observable;
  *
  * @author Adrien
  */
-public class GameContext extends Observable implements Updatable
+public abstract class GameContext extends Observable implements Updatable
 {
     public GameContext()
     {
         entities = new GameEntityList();
         this.id = sid++;
+        
+        initialize();
     }
     
     public static int sid = 1;
     public final int id;
+    
+    protected abstract void initialize();
     
     private static GameContext gameContext = null;
     public static GameContext getCurrentGameContext()

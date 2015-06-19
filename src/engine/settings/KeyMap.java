@@ -16,6 +16,7 @@
  */
 package engine.settings;
 
+import engine.model.ActionManager;
 import engine.model.elementary.Key;
 import java.util.Arrays;
 import java.util.Collection;
@@ -29,15 +30,18 @@ public class KeyMap
     public KeyMap(Key... keys)
     {
         this.keys = Arrays.asList(keys);
+        this.actionManager = new ActionManager();
     }
     public KeyMap(Collection<Key> keys)
     {
         this.keys = keys;
+        this.actionManager = new ActionManager();
     }
     
-    protected final Collection<Key> keys;
+    protected Collection<Key> keys;
+    protected ActionManager actionManager;
     
-    private static KeyMap static_keymap;
+    private static KeyMap static_keymap = null;
     public static KeyMap getKeyMap()
     {
         return static_keymap;
@@ -46,6 +50,12 @@ public class KeyMap
     {
         static_keymap = keyMap;
     }
+    
+    public ActionManager getActionManager()
+    {
+        return this.actionManager;
+    }
+    
     
     public String getActionFromKey(String keyName)
     {
