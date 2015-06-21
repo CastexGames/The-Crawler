@@ -1,13 +1,14 @@
 package game;
 
-import engine.model.GameContext;
-import engine.model.actions.MoveAction;
-import engine.model.components.Label;
-import engine.model.elementary.Key;
-import engine.model.elementary.Vector2D;
-import engine.model.event.EventArg;
-import engine.model.event.EventHandler;
-import engine.settings.KeyMap;
+import enginev2.model.GameContext;
+import enginev2.model.key.Key;
+import enginev2.model.layer.Layer;
+import enginev2.model.actions.MoveAction;
+import enginev2.model.vector.vector2d.Vector2D;
+import enginev2.settings.KeyMap;
+import enginev2.view.components.ComponentRow;
+import enginev2.view.components.Label;
+import java.awt.Color;
 import java.awt.Font;
 
 /**
@@ -25,12 +26,30 @@ public class MenuContext extends GameContext
     @Override
     protected void initialize()
     {
-        Font font = new Font("Monotype Corsiva", Font.PLAIN, 30);
+        Layer frontLayer = new Layer();
+        addLayer(frontLayer);
+        
+        ComponentRow cr = new ComponentRow(null);
+        cr.setLocation(new Vector2D(100, 100));
         
         Label label = new Label("Chocolat");
-        label.setLocation(new Vector2D(100, 100));
-        label.setFont(font);
-        entities.add(label);
+        label.getDrawer().setBackground(Color.red);
+        label.onClick.add(arg ->
+        {
+            label.setVisible(false);
+        });
+        
+        cr.addChild(label);
+        
+        Label label2 = new Label("Chocolat2");
+        label2.getDrawer().setBackground(Color.GREEN);
+        label2.onClick.add(arg ->
+        {
+            label2.setVisible(false);
+        });
+        cr.addChild(label2);
+        
+        frontLayer.addEntity(cr);
         
         KeyMap km = new KeyMap(
                 new Key("z", MoveAction.FORWARD.toString())

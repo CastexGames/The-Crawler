@@ -40,4 +40,8 @@ public interface Vector<V extends Vector> extends Cloneable
     public boolean hasEmptyMember();
     public boolean hasPositiveMember();
     public boolean hasNegativeMember();
+    
+    public double getDimension(int dimension);
+    public long getIntDimension(int i);
+    public int getDimensionNumber();
 }

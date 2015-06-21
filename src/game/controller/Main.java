@@ -1,7 +1,7 @@
 package game.controller;
 
-import engine.controller.Game;
-import engine.model.GameContext;
+import enginev2.controller.Game;
+import enginev2.model.GameContext;
 import game.MenuContext;
 
 /**
@@ -34,8 +34,8 @@ public class Main extends Game
     protected void initializeSettings()
     {
         System.out.println("Current settings package : " + WindowSettings.class.getPackage().getName());
-        engine.settings.WindowSettings.setGlobalWindowSettings(new WindowSettings());
-        engine.settings.ExceptionManager.setGloabalExceptionManager(new ExceptionManager());
+        enginev2.settings.WindowSettings.setGlobalWindowSettings(new WindowSettings());
+        enginev2.settings.ExceptionManager.setGloabalExceptionManager(new ExceptionManager());
     }
 
     @Override

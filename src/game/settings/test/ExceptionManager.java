@@ -9,7 +9,7 @@ package game.settings.test;
  *
  * @author Adrien
  */
-public class ExceptionManager extends engine.settings.ExceptionManager
+public class ExceptionManager extends enginev2.settings.ExceptionManager
 {
     public ExceptionManager()
     {

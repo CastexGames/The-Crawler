@@ -9,7 +9,7 @@ package game.settings.test;
  *
  * @author Adrien
  */
-public class WindowSettings extends engine.settings.WindowSettings
+public class WindowSettings extends enginev2.settings.WindowSettings
 {
     public WindowSettings()
     {
@@ -49,7 +49,7 @@ public class WindowSettings extends engine.settings.WindowSettings
     @Override
     public boolean isFullScreen()
     {
-        return true;
+        return false;
     }
 
     @Override

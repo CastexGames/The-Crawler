@@ -14,29 +14,21 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package enginev2.view;
+package enginev2.view.drawer;
 
+import enginev2.model.entity.IEntity;
+import enginev2.settings.ExceptionManager;
 import enginev2.model.vector.Vector;
+import enginev2.view.ViewPort;
 import java.awt.Graphics;
 
 /**
  *
  * @author Adrien
  */
-public abstract class Drawer<T>
+public abstract class Drawer<T extends IEntity>
 {
-    public Drawer(T entity)
-    {
-        this.entity = entity;
-    }
-    
-    private final T entity;
-    protected final T getEntity()
-    {
-        return entity;
-    }
-    
-    public void draw(Graphics graphic, ViewPort viewPort, Vector locationOffset)
+    protected ViewPort transformViewPort(ViewPort viewPort, Vector locationOffset)
     {
         if(!locationOffset.isEmpty())
         {
@@ -46,13 +38,32 @@ public abstract class Drawer<T>
                 viewPort.setLocation(viewPort.getLocation().add(locationOffset));
             }
             catch (CloneNotSupportedException ex)
-            { }
+            {
+                ExceptionManager.getExceptionManager().manager(ex);
+            }
         }
         
-        if(!viewPort.isEmpty() && isOnTheScreen(viewPort))
-            draw(graphic, viewPort);
+        return viewPort;
     }
     
-    protected abstract boolean isOnTheScreen(ViewPort viewPort);
-    protected abstract void draw(Graphics graphic, ViewPort viewPort);
+    public void paint(T obj, Graphics graphic, ViewPort viewPort)
+    {
+        if(!viewPort.isEmpty() && isOnTheScreen(obj, viewPort))
+            intermediaryDraw(obj, graphic, viewPort);
+    }
+    
+    protected void intermediaryDraw(T obj, Graphics graphic, ViewPort viewPort)
+    {
+        draw(obj, graphic, viewPort);
+    }
+    
+    protected abstract boolean isOnTheScreen(T obj, ViewPort viewPort);
+    
+    /**
+     * Draw the current element (from <i>getEntity()</i>) and draw the children.
+     * 
+     * @param graphic
+     * @param viewPort 
+     */
+    protected abstract void draw(T obj, Graphics graphic, ViewPort viewPort);
 }

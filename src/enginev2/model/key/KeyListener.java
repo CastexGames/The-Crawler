@@ -14,30 +14,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package enginev2.view;
+package enginev2.model.key;
 
-import enginev2.model.vector.Vector;
-import java.awt.Graphics;
+import java.util.Collection;
 
 /**
  *
  * @author Adrien
  */
-public class DrawerManager
+public interface KeyListener
 {
-    public DrawerManager()
-    {
-        this.drawer = null;
-    }
-    
-    private Drawer drawer;
-    public void setRootDrawer(Drawer drawer)
-    {
-        this.drawer = drawer;
-    }
-    
-    public void draw(Graphics graphic, ViewPort viewPort, Vector screenSize)
-    {
-        
-    }
+    public void keyPressed(Collection<Key> key);
 }
